@@ -1,0 +1,365 @@
+#:kivy 2.0.0
+<CreateAccount>:
+    # name: "register"
+    email: email
+    username: username
+    password: password
+
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: 60/255, 60/255, 60/255, 0.7
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Usuario: "
+                pos_hint: {"x":0.1, "top":0.7}
+                size_hint: 0.35, 0.15
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                id: username
+                multiline: False
+                write_tab: False
+                pos_hint: {"x":0.6, "top":0.7}
+                size_hint: 0.35, 0.15
+                on_text_validate:
+                    if email.text!="" and password.text!="" and username.text!="": \
+                    root.registerBtn()
+                    root.manager.transition.direction = "left"  
+
+            Label:
+                text: "Password: "
+                pos_hint: {"x":0.1, "top":0.5}
+                size_hint: 0.35, 0.15
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                id: password
+                password: True
+                multiline: False
+                write_tab: False
+                pos_hint: {"x":0.6, "top":0.5}
+                size_hint: 0.35, 0.15
+                on_text_validate:
+                    if email.text!="" and password.text!="" and username.text!="": \
+                    root.registerBtn()
+                    root.manager.transition.direction = "left"  
+
+            Label:
+                text: "Email: "
+                pos_hint: {"x":0.1, "top":0.3}
+                size_hint: 0.35, 0.15
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                id: email
+                multiline: False
+                write_tab: False
+                pos_hint: {"x":0.6, "top":0.3}
+                size_hint: 0.35, 0.15
+                on_text_validate:
+                    if email.text!="" and password.text!="" and username.text!="": \
+                    root.registerBtn()
+                    root.manager.transition.direction = "left"  
+
+        Button:
+            text:"Register"
+            font_size: (root.width**2 + root.height**2) / 13**4
+            
+            on_release:
+                root.registerBtn()
+                root.manager.transition.direction = "left"  
+
+        Button:
+            text:"Go Back"
+            font_size: (root.width**2 + root.height**2) / 13**4
+
+            on_release: 
+                root.toLoginBtn()
+                root.manager.transition.direction = "left"
+
+<LoginAccount>:
+    # name: "login"
+    username: username
+    password: password
+
+    FloatLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: 60/255, 60/255, 60/255, 0.7
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        FloatLayout:
+            cols: 1
+            Label:
+                text: "Usuario: "
+                pos_hint: {"x":0.1, "top":0.9}
+                size_hint: 0.35, 0.15
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                id: username
+                multiline: False
+                write_tab: False
+                pos_hint: {"x":0.4, "top":0.9}
+                size_hint: 0.35, 0.15
+                on_text_validate:
+                    if password.text!="" and username.text!="": \
+                    root.loginBtn()
+                    root.manager.transition.direction = "left"
+
+            Label:
+                text: "Password: "
+                pos_hint: {"x":0.1, "top":0.6}
+                size_hint: 0.35, 0.15
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                id: password
+                password: True
+                multiline: False
+                write_tab: False
+                pos_hint: {"x":0.4, "top":0.6}
+                size_hint: 0.35, 0.15
+                on_text_validate:
+                    if password.text!="" and username.text!="": \
+                    root.loginBtn()
+                    root.manager.transition.direction = "left"
+        
+        Button:
+            text: "Enviar"
+            pos_hint: {"x":0.3, "top":0.25}
+            size_hint: 0.4, 0.20
+            font_size: (root.width**2 + root.height**2) / 12**4
+
+            on_release:
+                root.loginBtn()
+                root.manager.transition.direction = "left"
+
+        
+        Button:
+            text: "Not account? Register"
+            pos_hint: {"x":0.2, "top":0.35}
+            size_hint: 0.6, 0.10
+            font_size: (root.width**2 + root.height**2) / 13**4
+
+            on_release: 
+                root.toRegisterBtn()
+                root.manager.transition.direction = "right"
+
+
+<LessonScreen1>:
+    # name: "lesson1"
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: 60/255, 60/255, 60/255, 0.7
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        MyTitle:
+            size_hint: 1, 0.2
+
+            
+            Button:
+                text: "Config"
+                pos_hint: {'top':1}
+                size_hint: 0.1, 1
+                on_press:
+                    root.go_config()
+                    root.manager.transition.direction = "down"
+            Button:
+                text:">"
+                pos_hint: {'right':1, 'top': 1}
+                size_hint: 0.1, 1
+                on_press:
+                    root.next()
+                    root.manager.transition.direction = "left"
+
+        MyLessonBox:
+
+<LessonScreen2>:
+    # name: "lesson2"
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: 60/255, 60/255, 60/255, 0.7
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        MyTitle:
+            id: mytitlee
+            size_hint: 1, 0.2
+
+            
+            Button:
+                text: "<"
+                pos_hint: {'top':1}
+                size_hint: 0.1, 1
+                on_press:
+                    root.previous()
+                    root.manager.transition.direction = "right"
+            Button:
+                text:">"
+                pos_hint: {'right':1, 'top': 1}
+                size_hint: 0.1, 1
+                on_press:
+                    root.next()
+                    root.manager.transition.direction = "left"
+
+        MyLessonBox:
+
+<LessonScreen3>:
+    # name: "lesson3"
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: 60/255, 60/255, 60/255, 0.7
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        MyTitle:
+            size_hint: 1, 0.2
+
+            Button:
+                text: "<"
+                pos_hint: {'top':1}
+                size_hint: 0.1, 1
+                on_press:
+                    root.previous()
+                    root.manager.transition.direction = "right"
+            Button:
+                text:">"
+                pos_hint: {'right':1, 'top': 1}
+                size_hint: 0.1, 1
+                disabled: True
+                on_press:
+                    root.next()
+                    root.manager.transition.direction = "left"
+            
+        MyLessonBox:
+
+<ClassRoom>:
+    # name: 'class'
+
+    GridLayout:
+        cols: 1
+        canvas:
+            Color:
+                rgba: 60/255, 60/255, 60/255, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        MyLabelText:
+
+        MyEvaluation:
+            size_hint: 1, 0.2
+
+            Button:
+                text: 'Back'
+                pos_hint: {'bottom':1}
+                size_hint: 0.25, 1
+                on_release:
+                    root.go_back()
+                
+            Button:
+                text: 'Evaluate'
+                pos_hint: {'bottom':1, 'x':0.25}
+                size_hint: 0.5, 1
+                on_release:
+                    root.evaluate()
+
+            Button:
+                text: 'Show Answer'
+                pos_hint: {'bottom':1, 'x':0.75}
+                size_hint: 0.25, 1
+                on_release:
+                    root.show_answers()
+
+<ConfigScreen>:
+    # name: 'config'
+    user: user
+    mail: mail
+    correct: correct
+    total: total
+    percentage: percentage
+
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 0, 0, 0, 0.75
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Button:
+            text: 'Go Back'
+            pos_hint: {'left': 0, 'top': 1}
+            size_hint: 0.25, 0.2
+            font_size: 18
+            on_release:
+                root.goBack()
+
+        Button:
+            text: 'Log out'
+            # background_color: (255, 255, 255, 1)
+            # color: (255, 255, 255, 1)
+            pos_hint: {'right': 1, 'top': 1}
+            size_hint: 0.25, 0.2
+            font_size: 18
+            on_release:
+                root.logOut()
+
+        Label:
+            text: 'Personal Information'
+            pos_hint: {'left': 0.1, 'top': 1}
+            size_hint: 1, 0.2
+            font_size: 20
+            canvas.before:
+                Color:
+                    rgba: 100/255, 60/255, 60/255, 0.5
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+        Label:
+            id: user
+            text: 'User: '
+            pos_hint: {'x':0.15, 'top': 0.85}
+            size_hint: 0.3, 0.2
+        Label:
+            id: mail
+            text: 'Mail: '
+            pos_hint: {'x':0.55, 'top': 0.85}
+            size_hint: 0.3, 0.2
+        Label:
+            id: correct
+            text: 'Correct Answer: '
+            pos_hint: {'x':0.35, 'top': 0.7}
+            size_hint: 0.3, 0.2
+        Label:
+            id: total
+            text: 'Total Answer: '
+            pos_hint: {'x':0.35, 'top': 0.5}
+            size_hint: 0.3, 0.2
+        Label:
+            id: percentage
+            text: 'Percentage of Success: '
+            pos_hint: {'x':0.35, 'top': 0.3}
+            size_hint: 0.3, 0.2
+            
